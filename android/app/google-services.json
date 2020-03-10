@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "81925668048",
+    "firebase_url": "https://thestrangechat.firebaseio.com",
+    "project_id": "thestrangechat",
+    "storage_bucket": "thestrangechat.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:81925668048:android:956a8b4e14b32d62de32d5",
+        "android_client_info": {
+          "package_name": "com.timrekelj.thestrangechat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "81925668048-ph6rt3lbfam9bonpmlprkupfet7iq7mo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChJFtl-In0sa5OW-cbweBkJ-JzQ9Ea-Kg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "81925668048-ph6rt3lbfam9bonpmlprkupfet7iq7mo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
