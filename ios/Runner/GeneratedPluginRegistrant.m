@@ -22,19 +22,12 @@
 @import firebase_database;
 #endif
 
-#if __has_include(<liquid_swipe/LiquidSwipePlugin.h>)
-#import <liquid_swipe/LiquidSwipePlugin.h>
-#else
-@import liquid_swipe;
-#endif
-
 @implementation GeneratedPluginRegistrant
 
 + (void)registerWithRegistry:(NSObject<FlutterPluginRegistry>*)registry {
   [FLTFirebaseAuthPlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseAuthPlugin"]];
   [FLTFirebaseCorePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseCorePlugin"]];
   [FLTFirebaseDatabasePlugin registerWithRegistrar:[registry registrarForPlugin:@"FLTFirebaseDatabasePlugin"]];
-  [LiquidSwipePlugin registerWithRegistrar:[registry registrarForPlugin:@"LiquidSwipePlugin"]];
 }
 
 @end

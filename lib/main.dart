@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:the_strange_chat/auth/welcomeMenu.dart';
+import 'package:the_strange_chat/auth/login.dart';
 
 void main() => runApp(MyApp());
 
@@ -15,8 +15,9 @@ class MyApp extends StatelessWidget {
         accentColor: Color(0xff9a2d37),
         backgroundColor: Color(0xff454545)
       ),
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: WelcomeMenu(context)
+        body: LogIn()
       )
     );
   }

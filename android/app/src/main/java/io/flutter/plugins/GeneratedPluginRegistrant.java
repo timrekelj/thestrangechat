@@ -17,6 +17,5 @@ public final class GeneratedPluginRegistrant {
       io.flutter.plugins.firebaseauth.FirebaseAuthPlugin.registerWith(shimPluginRegistry.registrarFor("io.flutter.plugins.firebaseauth.FirebaseAuthPlugin"));
     flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.core.FirebaseCorePlugin());
     flutterEngine.getPlugins().add(new io.flutter.plugins.firebase.database.FirebaseDatabasePlugin());
-      com.sahdeepsingh.liquid_swipe.LiquidSwipePlugin.registerWith(shimPluginRegistry.registrarFor("com.sahdeepsingh.liquid_swipe.LiquidSwipePlugin"));
   }
 }
