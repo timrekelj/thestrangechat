@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:the_strange_chat/auth/login.dart';
+import 'package:email_validator/email_validator.dart';
 
 class SignUp extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  SignUpState createState() => SignUpState();
 }
 
-class _SignUpState extends State<SignUp> {
-  String _email, _password, _confirmedPassword, _username;
+class SignUpState extends State<SignUp> {
+  String _email, _password, _username;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   Widget build(BuildContext thisContext) {
@@ -38,6 +39,7 @@ class _SignUpState extends State<SignUp> {
                     if (input.length < 8) {
                       return 'Your username is too short';
                     }
+                    return null;
                   },
                   onSaved: (input) => _username = input,
                   decoration: InputDecoration(
@@ -85,6 +87,7 @@ class _SignUpState extends State<SignUp> {
                     if(input.isEmpty){
                       return 'Please type an email';
                     }
+                    return null;
                   },
                   onSaved: (input) => _email = input,
                   decoration: InputDecoration(
@@ -132,6 +135,7 @@ class _SignUpState extends State<SignUp> {
                     if(input.length < 6){
                       return 'Your password is too short';
                     }
+                    return null;
                   },
                   onSaved: (input) => _password = input,
                   decoration: InputDecoration(
@@ -166,54 +170,6 @@ class _SignUpState extends State<SignUp> {
                     labelText: 'Password',
                     labelStyle:TextStyle(color: Color(0xff2e9459)),
                     icon: Icon(Icons.lock, color: Color(0xff2e9459))
-                  ),
-                  obscureText: true,
-                ),
-              ),
-
-              //Confirmed password text field
-              Padding(
-                padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
-                child: TextFormField(
-                  style: TextStyle(color: Color(0xff2e9459)),
-                  validator: (input) {
-                    if (input != _password) {
-                      return 'Paswords do not match';
-                    }
-                  },
-                  onSaved: (input) => _confirmedPassword = input,
-                  decoration: InputDecoration(
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      borderSide: BorderSide(
-                        color: Color(0xff2e9459),
-                        width: 2
-                      )
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      borderSide: BorderSide(
-                        color: Color(0xff2e9459),
-                        width: 2
-                      )
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      borderSide: BorderSide(
-                        color: Color(0xff9a2d37),
-                        width: 2
-                      )
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: const BorderRadius.all(Radius.circular(30)),
-                      borderSide: BorderSide(
-                        color: Color(0xff9a2d37),
-                        width: 2
-                      )
-                    ),
-                    labelText: 'Confirm Password',
-                    labelStyle:TextStyle(color: Color(0xff2e9459)),
-                    icon: Icon(Icons.lock_open, color: Color(0xff2e9459))
                   ),
                   obscureText: true,
                 ),
@@ -268,11 +224,36 @@ class _SignUpState extends State<SignUp> {
       try{
         AuthResult user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
         FirebaseUser userEmail = user.user;
-        userEmail.sendEmailVerification();
-        Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
+        if(EmailValidator.validate(_email)){
+          userEmail.sendEmailVerification();
+          Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
+        }
+        else {
+          //TODO not existing email
+          print('Email does not exist');
+          return "Email does not exist";
+        }
       }catch(e){
         print(e.message);
       }
     }
+  }
+
+  void emailSent(BuildContext context) {
+    showDialog(context: context,
+      builder: (BuildContext context){
+        return AlertDialog(
+          title: Text('Verification email has been sent'),
+          actions: <Widget>[
+            FlatButton(
+              child: Text('Close'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            )
+          ],
+        );
+      }
+    );
   }
 }

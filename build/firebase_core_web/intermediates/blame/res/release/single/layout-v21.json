@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/home/timmy/Development/Flutter/the_strange_chat/build/firebase_core_web/intermediates/res/merged/release/layout-v21/notification_template_icon_group.xml",
+        "source": "/home/timmy/.gradle/caches/transforms-2/files-2.1/ce530c5b50dc774f16b6e9179ea6d25d/core-1.0.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/home/timmy/Development/Flutter/the_strange_chat/build/firebase_core_web/intermediates/res/merged/release/layout-v21/notification_action.xml",
+        "source": "/home/timmy/.gradle/caches/transforms-2/files-2.1/ce530c5b50dc774f16b6e9179ea6d25d/core-1.0.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/home/timmy/Development/Flutter/the_strange_chat/build/firebase_core_web/intermediates/res/merged/release/layout-v21/notification_action_tombstone.xml",
+        "source": "/home/timmy/.gradle/caches/transforms-2/files-2.1/ce530c5b50dc774f16b6e9179ea6d25d/core-1.0.0/res/layout-v21/notification_action_tombstone.xml"
+    },
+    {
+        "merged": "/home/timmy/Development/Flutter/the_strange_chat/build/firebase_core_web/intermediates/res/merged/release/layout-v21/notification_template_custom_big.xml",
+        "source": "/home/timmy/.gradle/caches/transforms-2/files-2.1/ce530c5b50dc774f16b6e9179ea6d25d/core-1.0.0/res/layout-v21/notification_template_custom_big.xml"
+    }
+]
