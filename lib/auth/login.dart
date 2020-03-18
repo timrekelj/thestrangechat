@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:the_strange_chat/auth/signup.dart';
 import 'package:the_strange_chat/chatting/home.dart';
-import 'signup.dart' as signup;
 
 class LogIn extends StatefulWidget {
   @override
@@ -34,9 +33,8 @@ class _LogInState extends State<LogIn> {
               ),
 
               //E-mail text field
-              //TODO wrong email or password
               Padding(
-                padding: const EdgeInsets.fromLTRB(20, 100, 20, 0),
+                padding: const EdgeInsets.fromLTRB(20, 70, 20, 0),
                 child: TextFormField(
                   style: TextStyle(color: Color(0xff2e9459)),
                   validator: (input) {
@@ -150,7 +148,7 @@ class _LogInState extends State<LogIn> {
 
               //Buttons
               Padding(
-                padding: const EdgeInsets.fromLTRB(0, 70, 0, 0),
+                padding: const EdgeInsets.fromLTRB(0, 50, 0, 0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
@@ -197,9 +195,10 @@ class _LogInState extends State<LogIn> {
     final _formState = _formKey.currentState;
     if(_formState.validate()){
       _formState.save();
+      AuthResult user;
       try{
         //try to sign in
-        AuthResult user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
+        user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: _email, password: _password);
         FirebaseUser userEmail = user.user;
         //if email is verified, the user can continue to the menu
         if (userEmail.isEmailVerified) {
@@ -210,13 +209,12 @@ class _LogInState extends State<LogIn> {
           _unverifiedEmail(userEmail);
         }
       }catch(e){
-        //If the error code is 'user not found', _wrongCredentials method is called
-        if(e.hashCode == 856702360){
+        if(user == null) {
           _wrongCredentials();
         }
         //if the error is not 'user not found', write the error to the console
         else {
-          print(e.hashCode.toString() + '||||||||' + e.toString());
+          print(e.hashCode.toString() + '   ||||||||   ' + e.toString());
         }
       }
     }
@@ -247,8 +245,6 @@ class _LogInState extends State<LogIn> {
               child: Text('Send verification email'),
               onPressed: () {
                 userEmail.sendEmailVerification();
-                //method from /auth/signup.dart file
-                signup.SignUpState().emailSent(context);
                 Navigator.of(context).pop();
               },
             ),
@@ -274,7 +270,7 @@ class _LogInState extends State<LogIn> {
         return AlertDialog(
           title: Text('Reset your password'),
           content: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 100, 20, 0),
+            padding: const EdgeInsets.fromLTRB(10, 0, 10, 0),
             child: TextFormField(
               style: TextStyle(color: Color(0xff2e9459)),
               validator: (input) {
