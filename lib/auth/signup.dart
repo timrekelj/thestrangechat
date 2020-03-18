@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:the_strange_chat/auth/login.dart';
 import 'package:email_validator/email_validator.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class SignUp extends StatefulWidget {
   @override
@@ -224,6 +225,7 @@ class SignUpState extends State<SignUp> {
       try{
         AuthResult user = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: _email, password: _password);
         FirebaseUser userEmail = user.user;
+        Firestore.instance.collection('users').add({'username' : _username, 'e-mail' : _email});
         if(EmailValidator.validate(_email)){
           userEmail.sendEmailVerification();
           Navigator.push(context, MaterialPageRoute(builder: (context) => LogIn()));
